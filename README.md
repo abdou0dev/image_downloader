@@ -1,12 +1,13 @@
 # Image Downloader
 
-A small CLI utility that downloads all images from a webpage.
+A small app with GUI that downloads images from a webpage.
 
 The script fetches a page, extracts all `<img>` elements, then downloads the images into a local folder organized by domain.
 
 ## Requirements
 
 * Python 3
+* Tkinter
 * `requests`
 * `beautifulsoup4`
 
