@@ -40,7 +40,7 @@ def submit():
         img_elems = soup.select("img")
 
         info_label.config(text=f"{len(img_elems)} image found.")
-
+        bar['maximum'] = len(img_elems)
         # Looping through every <img> element.
         stats_label.config(text='Locating Images')
         downloaded_images = 0
@@ -64,8 +64,10 @@ def submit():
                     f.write(chunk)
                 downloaded_images += 1
                 info_label.config(text=f"{downloaded_images} of {len(img_elems)}")
+            bar['value'] +=1
         stats_label.config(text='Done.')
         info_label.config(text=f"{downloaded_images} Downloaded of {len(img_elems)}")
+        bar['value'] = bar['maximum']
 
 window = Tk() # Instantiate an instance of a window.
 window.config(padx=10)
@@ -84,12 +86,15 @@ info_label = Label(window,
                    font=('Arial', 7),
                    text='')
 info_label.grid(row=2)
+# Progress bar.
+bar = Progressbar(orient='horizontal', mode='determinate', length=200)
+bar.grid(row=3)
 # Submit button.
 submit_btn = Button(window,
                     text='Submit',
                     font=('Arial', 10, 'bold'),
                     pady=10,
                     command=submit,)
-submit_btn.grid(row=3)
+submit_btn.grid(row=4, pady=20)
 
 window.mainloop()
