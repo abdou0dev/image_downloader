@@ -1,6 +1,7 @@
 from tkinter import *
 import requests, bs4, os, sys
 from urllib.parse import urlsplit
+from tkinter.ttk import Progressbar
 
 def submit():
     # URL entry user input handling.
